@@ -11,20 +11,19 @@ class AjaxMessaging(object):
             if response['Content-Type'] in ["application/javascript", "application/json"]:
                 try:
                     content = json.loads(response.content)
-                except ValueError:
+                    assert isinstance(content, dict)
+                except (ValueError, AssertionError):
                     return response
 
                 django_messages = []
-
                 for message in messages.get_messages(request):
                     django_messages.append({
                         "level": message.level,
-                        "message": message.message,
-                        "extra_tags": message.tags,
+                        "text": message.message,
+                        "tags": message.tags,
                     })
 
                 content['django_messages'] = django_messages
 
                 response.content = json.dumps(content)
-                print response.content
         return response
