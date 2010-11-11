@@ -1,5 +1,5 @@
 from django.contrib import messages
-import simplejson as json
+from django.utils import simplejson
 
 class AjaxMessaging(object):
     '''
@@ -25,5 +25,5 @@ class AjaxMessaging(object):
 
                 content['django_messages'] = django_messages
 
-                response.content = json.dumps(content)
+                response.content = simplejson.dumps(content)
         return response
