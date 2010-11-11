@@ -31,7 +31,7 @@
                     $.django.messages.showMany(json.django_messages);
                 }
             }).ajaxError(function(e, xhr, settings, exception) {
-                $($.django.messages.container).showNew("There was an error processing your request, please try again.", "error");
+                $.django.messages.showNew("There was an error processing your request, please try again.", "error");
             });
         },
         /**
