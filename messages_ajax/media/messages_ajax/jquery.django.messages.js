@@ -9,6 +9,8 @@
      */
     if(!$.django)
         $.django = {}
+    if(!gettext)
+        gettext = function(str) {return str};
 
     /**
      * Set of attributes and methods for interacting with django.contrib.messages app
@@ -31,7 +33,7 @@
                     $.django.messages.showMany(json.django_messages);
                 }
             }).ajaxError(function(e, xhr, settings, exception) {
-                $.django.messages.showNew("There was an error processing your request, please try again.", "error");
+                $.django.messages.showNew(gettext("There was an error processing your request, please try again."), "error");
             });
         },
         /**
