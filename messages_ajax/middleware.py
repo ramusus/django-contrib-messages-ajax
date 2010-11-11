@@ -10,7 +10,7 @@ class AjaxMessaging(object):
         if request.is_ajax():
             if response['Content-Type'] in ["application/javascript", "application/json"]:
                 try:
-                    content = json.loads(response.content)
+                    content = simplejson.loads(response.content)
                     assert isinstance(content, dict)
                 except (ValueError, AssertionError):
                     return response
