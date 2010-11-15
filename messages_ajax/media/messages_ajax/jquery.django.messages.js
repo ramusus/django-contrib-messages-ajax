@@ -30,7 +30,9 @@
                 var contentType = xhr.getResponseHeader("Content-Type");
                 if(contentType == "application/javascript" || contentType == "application/json") {
                     var json = $.parseJSON(xhr.responseText);
-                    $.django.messages.showMany(json.django_messages);
+                    if(json.django_messages) {
+                        $.django.messages.showMany(json.django_messages);
+                    }
                 }
             }).ajaxError(function(e, xhr, settings, exception) {
                 $.django.messages.showNew(gettext("There was an error processing your request, please try again."), "error");
