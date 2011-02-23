@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.utils import simplejson
+from utils import get_message_dict
 
 class AjaxMessaging(object):
     '''
@@ -15,15 +16,9 @@ class AjaxMessaging(object):
                 except (ValueError, AssertionError):
                     return response
 
-                django_messages = []
-                for message in messages.get_messages(request):
-                    django_messages.append({
-                        "level": message.level,
-                        "text": message.message,
-                        "tags": message.tags,
-                    })
-
-                content['django_messages'] = django_messages
+                content['django_messages'] = [get_message_dict(message) for message in messages.get_messages(request)]
 
                 response.content = simplejson.dumps(content)
         return response
+
+
