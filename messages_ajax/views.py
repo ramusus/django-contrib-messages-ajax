@@ -3,7 +3,7 @@ from django.conf import settings
 
 def message_mark_read(request, message_id):
     '''
-    Handle 404 exception and allow mark read requests for unexisted messages
+    Handle 404 exception and allow mark read requests for inexistent messages
     '''
     if 'persistent_messages' in settings.INSTALLED_APPS:
         from persistent_messages.views import message_mark_read as message_mark_read_original
