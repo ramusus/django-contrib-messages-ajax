@@ -8,8 +8,8 @@ def message_mark_read(request, message_id):
     if 'persistent_messages' in settings.INSTALLED_APPS:
         from persistent_messages.views import message_mark_read as message_mark_read_original
         try:
-            message_mark_read_original(request, message_id)
+            return message_mark_read_original(request, message_id)
         except Http404:
             return HttpResponse('')
     else:
-        raise NotImplementedError
+        raise Http404
