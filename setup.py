@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='django-contrib-messages-ajax',
-    version=__import__('django-contrib-messages-ajax').__version__,
+    version=__import__('messages_ajax').__version__,
     description='Django messaging for AJAX calls using jQuery',
     long_description=open('README').read(),
     author='ramusus',
