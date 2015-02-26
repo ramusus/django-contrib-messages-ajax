@@ -2,7 +2,7 @@
 from django import template
 from django.conf import settings
 from django.core.serializers import json
-from django.utils import simplejson
+import simplejson
 from ..utils import get_message_dict
 
 register = template.Library()
@@ -13,7 +13,7 @@ def init_messages(messages, container_selector):
     Returns javascript initialize code for `messages_ajax` application
     '''
     messages = [get_message_dict(message) for message in messages]
-    messages = simplejson.dumps(messages, cls=json.DjangoJSONEncoder, ensure_ascii=False)
+    messages = simplejson.dumps(messages, ensure_ascii=False)
 
     return '''
         <script type="text/javascript">

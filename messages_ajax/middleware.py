@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.utils import simplejson
+import simplejson
 from utils import get_message_dict
 
 class AjaxMessaging(object):
