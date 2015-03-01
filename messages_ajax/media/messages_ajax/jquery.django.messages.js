@@ -27,7 +27,7 @@
          * Initialize autoparsing of ajax json responses
          */
         initParseJsonResponses: function() {
-            $($.django.messages.container).ajaxComplete(function(e, xhr, settings) {
+            $(document).ajaxComplete(function(e, xhr, settings) {
                 var contentType = xhr.getResponseHeader("Content-Type");
                 if(contentType == "application/javascript" || contentType == "application/json") {
                     var json = $.parseJSON(xhr.responseText);

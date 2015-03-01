@@ -2,11 +2,13 @@ from django.contrib import messages
 import simplejson
 from utils import get_message_dict
 
+
 class AjaxMessaging(object):
-    '''
+    """
     Middlware for JSON responses. It adds to each JSON response array with messages from django.contrib.messages framework
     It allows handle messages on a page with javascript
-    '''
+    """
+
     def process_response(self, request, response):
         if request.is_ajax():
             if response['Content-Type'] in ["application/javascript", "application/json"]:
@@ -20,5 +22,3 @@ class AjaxMessaging(object):
 
                 response.content = simplejson.dumps(content)
         return response
-
-
