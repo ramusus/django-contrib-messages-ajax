@@ -128,6 +128,14 @@
             $.each(messages, function(i, message) {
                 $.django.messages.showNew(message, false);
             });
+        },
+        showText: function(text, autohide) {
+            message = {
+                id: 0,
+                tags: '',
+                text: text
+            }
+            $.django.messages.showNew(message, autohide);
         }
     };
 
