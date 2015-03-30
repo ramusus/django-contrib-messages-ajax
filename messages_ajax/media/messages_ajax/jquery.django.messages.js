@@ -40,7 +40,9 @@
                     text: gettext('There was an error processing your request, please try again.'),
                     tags: 'error'
                 }
-                $.django.messages.showNew(message);
+                if(exception != 'abort') {
+                    $.django.messages.showNew(message);
+                }
             });
         },
         /**
