@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from django import template
 from django.conf import settings
-from django.core.serializers import json
+from django.utils.safestring import mark_safe
+
 import simplejson
 from ..utils import get_message_dict
 
@@ -15,7 +16,7 @@ def init_messages(messages, container_selector):
     messages = [get_message_dict(message) for message in messages]
     messages = simplejson.dumps(messages, ensure_ascii=False)
 
-    return '''
+    return mark_safe('''
         <script type="text/javascript">
         /*<![CDATA[*/
             $(function() {
@@ -29,4 +30,4 @@ def init_messages(messages, container_selector):
             'container': container_selector,
             'persistent': 'true' if 'persistent_messages' in settings.INSTALLED_APPS else 'false',
             'messages': messages,
-        }
+        })
